@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#160b13">
+<title>Velvet Hearts — Our Little World</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400;1,500&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/pages.css">
+</head>
+<body class="vh-main">
+<div class="ambient ambient-one"></div>
+<div class="ambient ambient-two"></div>
+
+<header class="site-header">
+<span class="header-ornament">✧</span>
+<a class="brand" href="home.html"><span class="brand-heart">♡</span><span>VELVET HEARTS</span></a>
+<button class="menu-toggle" id="menuToggle" aria-label="Open menu" aria-expanded="false"><span></span><span></span></button>
+</header>
+
+<nav class="menu-panel" id="menuPanel" hidden>
+<span class="menu-eyebrow">YOUR LITTLE WORLD</span>
+<a href="#home">The beginning <span>01</span></a>
+<a href="#music">Music room <span>02</span></a>
+<a href="#memories">Memory world <span>03</span></a>
+<a href="#stars">Written in the stars <span>04</span></a>
+<a href="#game-world">Enter the world <span>05</span></a>
+<a href="letters.html">Letters & secrets <span>06</span></a>
+<a href="activities.html">Little activities <span>07</span></a>
+<a href="question.html">The question <span>08</span></a>
+</nav>
+
+<main>
+<!-- CINEMATIC MAIN HERO -->
+<section class="cinema-hero" id="home">
+<video class="cinema-video" id="heroVideo" autoplay muted loop playsinline preload="auto">
+<source src="videos/anime-opening.mp4" type="video/mp4">
+</video>
+<div class="cinema-shade"></div>
+<div class="cinema-stars" aria-hidden="true"></div>
+
+<div class="cinema-copy">
+<div class="hero-kicker"><span></span> A LITTLE WORLD OF OUR OWN <span></span></div>
+<p class="cinema-overline">SOME STORIES FEEL DIFFERENT</p>
+<h1>Stay for the<br><em>feeling.</em></h1>
+<p class="cinema-subtitle">A little love, a little magic,<br>and a moment to remember.</p>
+<a href="question.html" class="gold-button">Send a little heart <span>♡</span></a>
+<p class="cinema-caption">A quiet scene, just for you.</p>
+</div>
+<div class="cinema-bottom"><span>♡</span> TAKE YOUR TIME <span>♡</span></div>
+<button class="sound-toggle" id="soundToggle" type="button" aria-label="Turn video sound on">VIDEO SOUND OFF</button>
+</section>
+
+<!-- MUSIC -->
+<section class="world-section music-section" id="music">
+<div class="section-eyebrow">01 / OUR SOUNDTRACK</div>
+<h2>Some feelings have a <em>sound.</em></h2>
+<p class="section-description">A little music for the moments you want to keep.</p>
+<div class="music-glass">
+<div class="record-art"><span>♡</span><i></i></div>
+<div class="music-info">
+<span class="mini-label">THE VELVET HEARTS MUSIC ROOM</span>
+<h3>Press play. Stay awhile.</h3>
+<p id="musicStatus">A soundtrack for this little world.</p>
+<div class="music-controls">
+<button id="musicPlay" class="outline-button" type="button">Play music ♫</button>
+<button id="musicCollapse" class="music-collapse" type="button" aria-expanded="true">Collapse player −</button>
+</div>
+</div>
+<audio id="velvetAudio" loop preload="none"></audio>
+</div>
+<p class="tiny-note">Music starts when you press play. Your browser may block automatic audio.</p>
+</section>
+
+<!-- COUNTDOWN -->
+<section class="world-section countdown-section" id="countdown">
+<div class="section-eyebrow">02 / SOMETHING TO LOOK FORWARD TO</div>
+<h2>A little closer to <em>our moment.</em></h2>
+<div class="countdown-card">
+<span class="countdown-symbol">✧</span>
+<p>Every beautiful story has a moment worth waiting for.</p>
+<label for="countdownDate">Choose a date</label>
+<input type="datetime-local" id="countdownDate">
+<div class="countdown-values" id="countdownValues">
+<div><strong>--</strong><span>DAYS</span></div>
+<div><strong>--</strong><span>HOURS</span></div>
+<div><strong>--</strong><span>MINUTES</span></div>
+<div><strong>--</strong><span>SECONDS</span></div>
+</div>
+<p id="countdownMessage" aria-live="polite">Pick a date for your countdown.</p>
+</div>
+</section>
+
+<!-- MEMORY WORLD -->
+<section class="world-section memory-section" id="memories">
+<div class="section-eyebrow">03 / LITTLE MOMENTS</div>
+<h2>Our memory <em>world.</em></h2>
+<p class="section-description">Pictures, tiny details, and moments that deserve to stay.</p>
+<a class="feature-card memory-feature" href="memories.html">
+<div class="feature-symbol">♡</div>
+<div><span class="mini-label">MEMORY LANE</span><h3>Every picture tells a story.</h3><p>Open the gallery and keep your favourite moments close.</p></div>
+<span class="feature-arrow">↗</span>
+</a>
+</section>
+
+<!-- STARS -->
+<section class="world-section stars-section" id="stars">
+<div class="section-eyebrow">04 / WRITTEN IN THE STARS</div>
+<h2>Let the stars say <em>something.</em></h2>
+<p class="section-description">Choose a star. See what this little universe has for you.</p>
+<div class="star-sky" id="starSky">
+<button class="star-pick" data-message="You make ordinary moments feel like magic." aria-label="Choose star one">✦</button>
+<button class="star-pick" data-message="Some people feel like a place you can rest." aria-label="Choose star two">✧</button>
+<button class="star-pick" data-message="The smallest moments can become the biggest memories." aria-label="Choose star three">✦</button>
+<button class="star-pick" data-message="A little tenderness can change an entire day." aria-label="Choose star four">✧</button>
+<button class="star-pick" data-message="If this moment makes you smile, keep it." aria-label="Choose star five">✦</button>
+<button class="star-pick" data-message="There is beauty in being remembered." aria-label="Choose star six">✧</button>
+</div>
+<p class="star-message" id="starMessage" aria-live="polite">Tap one of the glowing stars ♡</p>
+</section>
+
+<!-- IMMERSIVE GAME / EXPERIENCE AREA -->
+<section class="game-world" id="game-world">
+<div class="game-world-background"></div>
+<div class="game-world-content">
+<div class="section-eyebrow">05 / STEP INSIDE</div>
+<span class="game-emblem">✧</span>
+<p class="game-overline">A WORLD BEYOND THE SCREEN</p>
+<h2>Your own little<br><em>universe.</em></h2>
+<p class="game-description">Explore little surprises, uncover hidden messages, play together, and discover what is waiting around the corner.</p>
+<a class="gold-button game-enter" href="activities.html">Enter the experience <span>↗</span></a>
+<div class="game-features">
+<div><span>01</span><strong>Discover</strong><small>Find little surprises</small></div>
+<div><span>02</span><strong>Play</strong><small>Try something together</small></div>
+<div><span>03</span><strong>Unlock</strong><small>Open hidden moments</small></div>
+</div>
+</div>
+</section>
+
+<!-- LETTER -->
+<section class="world-section letter-section" id="letter">
+<div class="section-eyebrow">06 / A LITTLE SECRET</div>
+<h2>There's something<br>I'd like you to <em>read.</em></h2>
+<p class="section-description">Not every message needs to be loud. Some are meant to be opened quietly.</p>
+<a class="outline-button" href="letters.html">Open your letter ♡</a>
+</section>
+
+<!-- ANIME CORNER -->
+<section class="world-section anime-section" id="anime">
+<div class="section-eyebrow">07 / OUR ANIME CORNER</div>
+<h2>A scene that feels like <em>us.</em></h2>
+<div class="anime-card">
+<div class="anime-visual"><span>♡</span><i>✧</i></div>
+<div class="anime-copy">
+<span class="mini-label">A LITTLE ESCAPE</span>
+<h3>Stay in this moment.</h3>
+<p>Return to the cinematic opening whenever you want to feel the magic again.</p>
+<a class="text-link" href="index.html">Watch the opening ↗</a>
+</div>
+</div>
+</section>
+
+<!-- FINAL QUESTION -->
+<section class="final-question" id="question">
+<div class="section-eyebrow">08 / ONE LAST LITTLE THING</div>
+<span class="question-heart">♡</span>
+<h2>Can I ask you<br><em>something?</em></h2>
+<p>There's one little question waiting for you.</p>
+<a href="question.html" class="gold-button">Open the question ♡</a>
+</section>
+
+<section class="closing-section">
+<span class="closing-star">✧</span>
+<p class="closing-small">UNTIL THE NEXT LITTLE MOMENT</p>
+<h2>Keep a little<br><em>love with you.</em></h2>
+<a href="quotes.html" class="text-link">Find a note to keep ↗</a>
+<div class="share-row"><button id="shareButton" class="share-button" type="button">Share this little world ↗</button></div>
+</section>
+</main>
+
+<footer class="site-footer"><span>♡ VELVET HEARTS</span><span>MADE OF LITTLE MOMENTS</span></footer>
+
+<nav class="bottom-nav" aria-label="Quick navigation">
+<a class="nav-item active" href="home.html" aria-current="page"><svg viewBox="0 0 24 24"><path d="m3 10 9-7 9 7v10a1 1 0 0 1-1 1h-5v-7H9v7H4a1 1 0 0 1-1-1Z"/></svg><span>Home</span></a>
+<a class="nav-item" href="letters.html"><svg viewBox="0 0 24 24"><path d="M20.8 4.6a5.5 5.5 0 0 0-7.8 0L12 5.7l-1.1-1.1a5.5 5.5 0 0 0-7.8 7.8l1.1 1.1L12 21l7.8-7.5 1.1-1.1a5.5 5.5 0 0 0-.1-7.8Z"/></svg><span>Letter</span></a>
+<a class="nav-item" href="quotes.html"><svg viewBox="0 0 24 24"><path d="m12 2 2.9 6 6.6 1-4.8 4.7 1.1 6.6-5.8-3.1-5.8 3.1 1.1-6.6L2.5 9l6.6-1Z"/></svg><span>Note</span></a>
+</nav>
+
+<script>
+(() => {
+  const toggle=document.getElementById('menuToggle');
+  const panel=document.getElementById('menuPanel');
+  toggle.addEventListener('click',()=>{
+    const open=panel.hidden;
+    panel.hidden=!open;
+    toggle.setAttribute('aria-expanded',String(open));
+    toggle.setAttribute('aria-label',open?'Close menu':'Open menu');
+    document.body.classList.toggle('menu-open',open);
+  });
+  panel.querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>{
+    panel.hidden=true;
+    toggle.setAttribute('aria-expanded','false');
+    document.body.classList.remove('menu-open');
+  }));
+
+  const video=document.getElementById('heroVideo');
+  const sound=document.getElementById('soundToggle');
+  sound.addEventListener('click',()=>{
+    video.muted=!video.muted;
+    sound.textContent=video.muted?'VIDEO SOUND OFF':'VIDEO SOUND ON';
+    sound.setAttribute('aria-label',video.muted?'Turn video sound on':'Mute video sound');
+    if(!video.muted) video.play().catch(()=>{});
+  });
+
+  const audio=document.getElementById('velvetAudio');
+  const play=document.getElementById('musicPlay');
+  const collapse=document.getElementById('musicCollapse');
+  const player=document.querySelector('.music-info');
+  play.addEventListener('click',async()=>{
+    if(!audio.getAttribute('src')){
+      document.getElementById('musicStatus').textContent='Add a track to the audio folder to play local music.';
+      return;
+    }
+    try{
+      if(audio.paused){await audio.play();play.textContent='Pause music Ⅱ';}
+      else{audio.pause();play.textContent='Play music ♫';}
+    }catch(e){document.getElementById('musicStatus').textContent='Tap play again if your browser blocked audio.';}
+  });
+  collapse.addEventListener('click',()=>{
+    const collapsed=player.classList.toggle('player-collapsed');
+    collapse.textContent=collapsed?'Expand player +':'Collapse player −';
+    collapse.setAttribute('aria-expanded',String(!collapsed));
+  });
+
+  const dateInput=document.getElementById('countdownDate');
+  const values=document.getElementById('countdownValues');
+  const message=document.getElementById('countdownMessage');
+  let timer;
+  dateInput.addEventListener('change',()=>{
+    clearInterval(timer);
+    if(!dateInput.value)return;
+    const target=new Date(dateInput.value).getTime();
+    const update=()=>{
+      let distance=target-Date.now();
+      if(distance<=0){values.innerHTML='<div><strong>♡</strong><span>NOW</span></div>';message.textContent='Your moment is here.';clearInterval(timer);return;}
+      const day=Math.floor(distance/86400000);distance%=86400000;
+      const hour=Math.floor(distance/3600000);distance%=3600000;
+      const minute=Math.floor(distance/60000);distance%=60000;
+      const second=Math.floor(distance/1000);
+      values.innerHTML=[[day,'DAYS'],[hour,'HOURS'],[minute,'MINUTES'],[second,'SECONDS']].map(x=>'<div><strong>'+x[0]+'</strong><span>'+x[1]+'</span></div>').join('');
+      message.textContent='A little closer, every second.';
+    };
+    update();timer=setInterval(update,1000);
+  });
+
+  document.querySelectorAll('.star-pick').forEach(star=>{
+    star.addEventListener('click',()=>{
+      document.getElementById('starMessage').textContent=star.dataset.message;
+      document.querySelectorAll('.star-pick').forEach(s=>s.classList.remove('chosen'));
+      star.classList.add('chosen');
+    });
+  });
+
+  document.getElementById('shareButton').addEventListener('click',async()=>{
+    const data={title:'Velvet Hearts',text:'Come into our little world ♡',url:location.href};
+    try{
+      if(navigator.share)await navigator.share(data);
+      else if(navigator.clipboard){await navigator.clipboard.writeText(location.href);alert('Link copied ♡');}
+      else alert('Copy this page link from your browser to share it.');
+    }catch(e){}
+  });
+})();
+</script>
+
+<div id="vhExitSurprise" role="dialog" aria-modal="true" aria-label="A little compliment" hidden>
+  <div class="vh-exit-card">
+    <button type="button" id="vhExitClose" aria-label="Close compliment">×</button>
+    <span>♡</span>
+    <p class="vh-exit-kicker">BEFORE YOU GO</p>
+    <h2>One little thing...</h2>
+    <p>You deserve to be appreciated, not just on special days, but in all the little moments in between. ♡</p>
+    <button type="button" id="vhStayButton">Stay a little longer</button>
+  </div>
+</div>
+<style>
+#vhExitSurprise[hidden]{display:none}
+#vhExitSurprise{position:fixed;inset:0;z-index:1000;display:grid;place-items:center;padding:20px;background:#100710c9;backdrop-filter:blur(12px)}
+.vh-exit-card{position:relative;width:min(100%,410px);padding:35px 27px;text-align:center;border:1px solid #d8b67c66;border-radius:19px;background:linear-gradient(145deg,#512039,#1c0b18);box-shadow:0 25px 90px #0008}
+.vh-exit-card>span{font:38px Georgia,serif;color:#f1d9a8}
+.vh-exit-card .vh-exit-kicker{font:8px Arial,sans-serif;letter-spacing:.2em;color:#c6a9ae}
+.vh-exit-card h2{font:italic 38px Georgia,serif;color:#f1d9a8;margin:13px 0}
+.vh-exit-card p:not(.vh-exit-kicker){font:17px/1.7 Georgia,serif;color:#f0e1df}
+.vh-exit-card button{border:1px solid #d8b67c66;border-radius:25px;padding:10px 16px;background:#351329;color:#f1d9a8;cursor:pointer}
+#vhExitClose{position:absolute;right:13px;top:12px;border:0;background:transparent;font-size:23px}
+</style>
+<script>
+(()=>{
+ const box=document.getElementById('vhExitSurprise');
+ const close=()=>{box.hidden=true;sessionStorage.setItem('vhExitSeen','1')};
+ document.getElementById('vhExitClose').addEventListener('click',close);
+ document.getElementById('vhStayButton').addEventListener('click',close);
+ document.addEventListener('mouseout',e=>{
+  if(e.clientY<=0&&!e.relatedTarget&&!sessionStorage.getItem('vhExitSeen')&&!box.hidden){
+   return;
+  }
+  if(e.clientY<=0&&!e.relatedTarget&&!sessionStorage.getItem('vhExitSeen')){
+   box.hidden=false;
+  }
+ });
+})();
+</script>
+
+  <script src="js/velvet-random-music.js" defer></script>
+<script src="js/velvet-welcome-music.js" defer></script>
+  <script src="js/velvet-effects.js" defer></script>
+  <script src="js/velvet-mobile.js" defer></script>
+  <script src="js/anime-corner.js" defer></script>
+</body>
+</html>

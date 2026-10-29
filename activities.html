@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#160b13">
+<title>Our Little Games ♡ Velvet Hearts</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400;1,500&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/pages.css">
+<style>
+.games-page{max-width:760px;margin:auto;padding:35px 17px 55px}
+.games-intro{text-align:center;margin-bottom:25px}
+.games-tag{font-size:8px;letter-spacing:.22em;color:#c6a9ae}
+.games-intro h1{font:400 clamp(45px,9vw,68px)/1 "Cormorant Garamond",serif;margin:13px 0}
+.games-intro h1 em,.game-panel h2 em{color:#f1d9a8}
+.games-intro p{font-size:11px;line-height:1.8;color:#b6a0aa}
+.game-tabs{display:grid;grid-template-columns:repeat(3,1fr);gap:7px;margin:23px 0}
+.game-tab{padding:12px 5px;border:1px solid #d8b67c33;border-radius:12px;background:#35132966;color:#cdb2bc;font-size:10px;cursor:pointer}
+.game-tab.active{border-color:#d8b67c99;color:#f1d9a8;background:#5a244055}
+.game-panel{border:1px solid #d8b67c40;border-radius:17px;padding:clamp(18px,4vw,30px);background:linear-gradient(145deg,#51203955,#1c0b188c);backdrop-filter:blur(15px)}
+.game-panel[hidden]{display:none}
+.game-panel h2{font:400 clamp(31px,6vw,43px)/1.05 "Cormorant Garamond",serif;margin:0 0 9px}
+.game-lead{color:#b6a0aa;font-size:10px;line-height:1.8;margin:0 0 22px}
+.progress-track{height:3px;background:#ffffff12;border-radius:8px;overflow:hidden;margin:14px 0 22px}
+.progress-fill{height:100%;width:0;background:linear-gradient(90deg,#a7557b,#f1d9a8);transition:width .25s}
+.question-count{color:#d8b67c;font-size:9px;letter-spacing:.14em}
+.question-text{font:26px/1.25 "Cormorant Garamond",serif;margin:12px 0 18px}
+.answer-list{display:grid;gap:9px}
+.answer-option{width:100%;text-align:left;border:1px solid #d8b67c30;border-radius:11px;padding:13px 14px;background:#160b134f;color:#f0e1df;font-size:11px;cursor:pointer;transition:background .2s,border-color .2s}
+.answer-option:hover,.answer-option.selected{border-color:#d8b67c99;background:#6b2b4c55}
+.game-actions{display:flex;gap:9px;justify-content:space-between;flex-wrap:wrap;margin-top:20px}
+.game-button{border:1px solid #d8b67c66;border-radius:25px;padding:11px 17px;background:#51203966;color:#f1d9a8;font-size:10px;cursor:pointer}
+.game-button:disabled{opacity:.35;cursor:not-allowed}
+.result-card{margin-top:20px;border:1px solid #d8b67c55;border-radius:13px;padding:20px;background:#160b1366;text-align:center}
+.result-score{font:400 54px "Cormorant Garamond",serif;color:#f1d9a8}
+.result-card h3{font:italic 27px "Cormorant Garamond",serif;margin:3px 0 10px}
+.result-card p{font-size:11px;line-height:1.8;color:#d1bdc5}
+.name-fields{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.name-fields label,.fact-editor label{display:block;color:#d8b67c;font-size:9px;letter-spacing:.08em}
+.name-fields input,.fact-editor textarea{display:block;width:100%;margin-top:8px;padding:12px;border:1px solid #d8b67c44;border-radius:9px;background:#160b13;color:#f7eee8;font:12px "DM Sans",sans-serif}
+.match-result{text-align:center;margin-top:20px}
+.match-number{font:400 70px "Cormorant Garamond",serif;color:#f1d9a8}
+.match-meter{height:6px;border-radius:10px;background:#ffffff13;overflow:hidden;margin:10px 0}
+.match-meter span{display:block;height:100%;width:0;background:linear-gradient(90deg,#a7557b,#f1d9a8);transition:width .7s}
+.surprise-card{min-height:190px;display:grid;place-items:center;text-align:center;margin:18px 0;padding:25px;border:1px solid #d8b67c33;border-radius:14px;background:radial-gradient(ellipse,#6c2b4a66,transparent 78%)}
+.surprise-symbol{font-size:30px;color:#f1d9a8}
+.surprise-card h3{font:italic 27px "Cormorant Garamond",serif;margin:10px 0;color:#f7eee8}
+.surprise-card p{max-width:430px;color:#d1bdc5;font:17px/1.6 "Cormorant Garamond",serif;margin:0}
+.fact-editor{margin-top:23px;padding-top:17px;border-top:1px solid #d8b67c22}
+.fact-editor summary{font-size:10px;color:#d8b67c;cursor:pointer}
+.fact-editor textarea{min-height:90px;resize:vertical;line-height:1.7}
+.small-note{font-size:9px;color:#9f8492;line-height:1.7}
+@media(max-width:480px){.name-fields{grid-template-columns:1fr}.game-tab{font-size:9px}.game-panel{padding:17px}.question-text{font-size:24px}}
+</style>
+</head>
+<body>
+<div class="ambient ambient-one"></div><div class="ambient ambient-two"></div>
+<header class="site-header">
+<span class="header-ornament">✧</span>
+<a class="brand" href="home.html"><span class="brand-heart">♡</span><span>VELVET HEARTS</span></a>
+<a class="menu-toggle" href="home.html" aria-label="Back home" style="display:grid;place-items:center;text-decoration:none;color:#f1d9a8">↗</a>
+</header>
+
+<main class="games-page">
+<div class="games-intro">
+<div class="games-tag">YOUR LITTLE PLAYGROUND</div>
+<h1>Let's see how we <em>match.</em></h1>
+<p>Twenty questions, a little matchmaking, and a surprise waiting just for you.</p>
+</div>
+
+<div class="game-tabs" role="tablist">
+<button class="game-tab active" data-tab="quiz" role="tab">♡ The Quiz</button>
+<button class="game-tab" data-tab="match" role="tab">✧ Matchmaking</button>
+<button class="game-tab" data-tab="surprise" role="tab">🎁 Surprise Me</button>
+</div>
+
+<section class="game-panel" id="panel-quiz">
+<h2>How well do we <em>connect?</em></h2>
+<p class="game-lead">Answer all 20 questions. There are no bad people here—this is a playful way to discover your preferences and how you think about a relationship.</p>
+<div id="quizArea">
+<div class="question-count" id="questionCount">QUESTION 1 OF 20</div>
+<div class="progress-track"><div class="progress-fill" id="quizProgress"></div></div>
+<h3 class="question-text" id="questionText"></h3>
+<div class="answer-list" id="answerList"></div>
+<div class="game-actions">
+<button class="game-button" id="prevQuestion" disabled>← Back</button>
+<button class="game-button" id="nextQuestion" disabled>Next →</button>
+</div>
+</div>
+<div id="quizResult" hidden></div>
+</section>
+
+<section class="game-panel" id="panel-match" hidden>
+<h2>Let's test the <em>chemistry.</em></h2>
+<p class="game-lead">Enter two names for a playful match score. This is just a fun name game, not a real measure of compatibility.</p>
+<div class="name-fields">
+<label>Your name<input id="nameOne" maxlength="35" placeholder="Enter a name"></label>
+<label>Their name<input id="nameTwo" maxlength="35" placeholder="Enter a name"></label>
+</div>
+<div class="game-actions"><button class="game-button" id="calculateMatch">Reveal our match ♡</button></div>
+<div class="match-result" id="matchResult" aria-live="polite"></div>
+</section>
+
+<section class="game-panel" id="panel-surprise" hidden>
+<h2>One little <em>secret.</em></h2>
+<p class="game-lead">Tap the button and let the universe pick a sweet surprise for you.</p>
+<div class="surprise-card" aria-live="polite">
+<div>
+<div class="surprise-symbol" id="surpriseSymbol">✧</div>
+<h3 id="surpriseTitle">Ready for a surprise?</h3>
+<p id="surpriseText">Something sweet is waiting behind this button.</p>
+</div>
+</div>
+<div class="game-actions" style="justify-content:center"><button class="game-button" id="surpriseButton">Surprise me now ♡</button></div>
+<details class="fact-editor">
+<summary>Make the secret facts more personal</summary>
+<p class="small-note">Edit these lines with real facts about yourself before sharing the website. One fact per line. These are examples, not claims about you.</p>
+<label for="customFacts">Your hidden facts<textarea id="customFacts" placeholder="I remember little details people tell me.&#10;My favourite way to relax is ...&#10;Something that always makes me smile is ..."></textarea></label>
+<div class="game-actions"><button class="game-button" id="saveFacts">Save my facts</button></div>
+<p class="small-note" id="factStatus">Saved facts stay in this browser on this device.</p>
+</details>
+</section>
+</main>
+
+<nav class="bottom-nav" aria-label="Quick navigation">
+<a class="nav-item" href="home.html"><svg viewBox="0 0 24 24"><path d="m3 10 9-7 9 7v10a1 1 0 0 1-1 1h-5v-7H9v7H4a1 1 0 0 1-1-1Z"/></svg><span>Home</span></a>
+<a class="nav-item" href="letters.html"><svg viewBox="0 0 24 24"><path d="M20.8 4.6a5.5 5.5 0 0 0-7.8 0L12 5.7l-1.1-1.1a5.5 5.5 0 0 0-7.8 7.8l1.1 1.1L12 21l7.8-7.5 1.1-1.1a5.5 5.5 0 0 0-.1-7.8Z"/></svg><span>Letter</span></a>
+<a class="nav-item active" href="activities.html"><svg viewBox="0 0 24 24"><path d="m12 2 2.9 6 6.6 1-4.8 4.7 1.1 6.6-5.8-3.1-5.8 3.1 1.1-6.6L2.5 9l6.6-1Z"/></svg><span>Games</span></a>
+</nav>
+
+<script>
+const tabs=[...document.querySelectorAll('.game-tab')];
+tabs.forEach(tab=>tab.addEventListener('click',()=>{
+ tabs.forEach(t=>t.classList.toggle('active',t===tab));
+ document.querySelectorAll('.game-panel').forEach(p=>p.hidden=p.id!=='panel-'+tab.dataset.tab);
+}));
+
+const questions=[
+['What makes a day feel special?', ['Thoughtful little gestures','An exciting adventure','Time together','A surprise gift']],
+['How do you prefer to communicate?', ['Talk things through honestly','Text throughout the day','Call when we have time','A mix of everything']],
+['When you feel stressed, what helps most?', ['Someone listening','A little space first','A hug and reassurance','Help solving the problem']],
+['What is your ideal date?', ['A cosy movie night','A beautiful dinner','An adventure somewhere new','A simple walk and deep talks']],
+['How do you show affection?', ['Sweet words','Doing helpful things','Spending time together','Little gifts and surprises']],
+['What matters most in a relationship?', ['Trust','Communication','Laughter','Respect']],
+['How should disagreements be handled?', ['Talk calmly and listen','Take a break, then talk','Apologise when wrong','Work out a solution together']],
+['What is your perfect weekend?', ['Relaxing together','Going out somewhere','Trying a new activity','Seeing friends too']],
+['How do you like to receive compliments?', ['About my personality','About my appearance','About what I achieve','Any sincere compliment']],
+['What kind of messages do you love?', ['Good morning messages','Random thoughtful texts','Long heartfelt messages','Funny messages that make me laugh']],
+['How important is personal space?', ['Very important','Some space, some togetherness','I like lots of together time','It depends on the day']],
+['What makes you feel appreciated?', ['Being listened to','Someone remembering details','Help without being asked','Being included in plans']],
+['What is your favourite kind of surprise?', ['A handwritten note','An unexpected outing','A favourite snack or gift','A thoughtful message']],
+['How do you handle a busy week?', ['Plan time together','Check in when possible','Send small updates','Make a special plan afterwards']],
+['What makes trust grow?', ['Keeping promises','Being honest','Being consistent','All of these']],
+['What kind of future sounds lovely?', ['Growing and learning together','Exploring the world','Building a peaceful home','Supporting each other’s dreams']],
+['What makes you laugh most?', ['Silly jokes','Playful teasing with kindness','Funny stories','Unexpected little moments']],
+['How do you prefer to celebrate good news?', ['Tell someone immediately','Have a little celebration','Share a quiet moment','Do something fun together']],
+['What helps you feel secure?', ['Clear communication','Consistency','Affection and reassurance','Respecting boundaries']],
+['What is the sweetest kind of love?', ['Feeling understood','Feeling safe to be myself','Being encouraged to grow','Choosing each other every day']]
+];
+let current=0, answers=Array(questions.length).fill(null);
+const count=document.getElementById('questionCount'), qText=document.getElementById('questionText'), answerList=document.getElementById('answerList'), progress=document.getElementById('quizProgress'), next=document.getElementById('nextQuestion'), prev=document.getElementById('prevQuestion');
+
+function renderQuestion(){
+ const q=questions[current];
+ count.textContent=`QUESTION ${current+1} OF ${questions.length}`;
+ qText.textContent=q[0];
+ progress.style.width=((current+1)/questions.length*100)+'%';
+ answerList.innerHTML='';
+ q[1].forEach((answer,index)=>{
+  const b=document.createElement('button');
+  b.type='button';b.className='answer-option'+(answers[current]===index?' selected':'');
+  b.textContent=String.fromCharCode(65+index)+'. '+answer;
+  b.addEventListener('click',()=>{
+   answers[current]=index;
+   answerList.querySelectorAll('button').forEach((x,i)=>x.classList.toggle('selected',i===index));
+   next.disabled=false;
+   next.textContent=current===questions.length-1?'See my result ♡':'Next →';
+  });
+  answerList.appendChild(b);
+ });
+ prev.disabled=current===0;
+ next.disabled=answers[current]===null;
+ next.textContent=current===questions.length-1?'See my result ♡':'Next →';
+}
+prev.addEventListener('click',()=>{if(current>0){current--;renderQuestion()}});
+next.addEventListener('click',()=>{
+ if(answers[current]===null)return;
+ if(current<questions.length-1){current++;renderQuestion();return;}
+ showResult();
+});
+function showResult(){
+ const counts=[0,0,0,0];
+ answers.forEach(a=>counts[a]++);
+ const max=Math.max(...counts);
+ const score=Math.round(max/questions.length*100);
+ let title,description;
+ if(score>=35){title='A beautiful balance ♡';description='You have a lovely mix of priorities. Keep talking, listening, and making room for each other.'}
+ else if(score>=28){title='Promising chemistry ✧';description='There are some shared instincts here, plus plenty to discover. Curiosity and honest conversations can bring you closer.'}
+ else{title='A little mystery to explore ♡';description='Your answers are wonderfully varied. That is not a bad result—differences can be a chance to learn what matters to each other.'}
+ document.getElementById('quizArea').hidden=true;
+ const result=document.getElementById('quizResult');
+ result.hidden=false;
+ result.innerHTML=`<div class="result-card"><div class="result-score">${score}%</div><h3>${title}</h3><p>You answered all 20 questions.</p><p>${description}</p><p class="small-note">This score reflects the pattern of your answers, not whether a real relationship will succeed.</p><button class="game-button" id="retryQuiz">Play again ↻</button></div>`;
+ document.getElementById('retryQuiz').addEventListener('click',()=>{
+  current=0;answers=Array(questions.length).fill(null);
+  document.getElementById('quizArea').hidden=false;result.hidden=true;renderQuestion();
+ });
+}
+renderQuestion();
+
+document.getElementById('calculateMatch').addEventListener('click',()=>{
+ const a=document.getElementById('nameOne').value.trim().toLowerCase();
+ const b=document.getElementById('nameTwo').value.trim().toLowerCase();
+ const box=document.getElementById('matchResult');
+ if(!a||!b){box.innerHTML='<p class="small-note">Enter both names first ♡</p>';return;}
+ let seed=0;
+ for(const ch of [...a+'♡'+b].sort())seed=(seed*31+ch.charCodeAt(0))%1000003;
+ const score=45+(seed%56);
+ let title=score>=90?'A storybook match!':score>=75?'Lovely chemistry!':score>=60?'A promising spark!':'A curious little mystery!';
+ let text=score>=90?'The name stars are sparkling today. Keep the kindness and communication glowing.':score>=75?'A sweet result for the two names. The real magic comes from how you treat each other.':score>=60?'There is room for a fun story here. Get curious about each other and keep talking.':'The stars are being mysterious. Try again for fun—names cannot measure a real connection.';
+ box.innerHTML=`<div class="match-number">${score}%</div><div class="match-meter"><span style="width:${score}%"></span></div><h3 style="font:italic 27px 'Cormorant Garamond',serif">${title}</h3><p class="small-note">${text}</p>`;
+});
+
+const defaultSurprises=[
+['A little reminder','You do not have to be perfect to be deeply appreciated. ♡'],
+['A tiny love fact','Remembering the little things someone says can make them feel truly seen.'],
+['A secret wish','May your next ordinary day contain one very unexpected reason to smile.'],
+['A gentle challenge','Send someone you care about a message that has no purpose except making them smile.'],
+['A little mystery','There is always something new to discover about a person—even after many conversations.'],
+['A note from this world','If you are reading this, someone wanted to make a small corner of the internet feel special for you. ♡'],
+['A sweet question','What is one little thing that can instantly improve your mood? Ask each other.'],
+['A future memory','One day, an ordinary moment from today might become a memory you treasure.']
+];
+function readFacts(){
+ try{
+  const saved=localStorage.getItem('vhCustomFacts');
+  return saved?saved.split('\n').map(s=>s.trim()).filter(Boolean):[];
+ }catch(e){return []}
+}
+let lastSurprise=-1;
+document.getElementById('surpriseButton').addEventListener('click',()=>{
+ const custom=readFacts();
+ const all=[...custom.map((x,i)=>['A little fact about me',x]),...defaultSurprises];
+ let n;
+ do{n=Math.floor(Math.random()*all.length)}while(all.length>1&&n===lastSurprise);
+ lastSurprise=n;
+ const item=all[n];
+ document.getElementById('surpriseSymbol').textContent=['♡','✧','✦','❀'][n%4];
+ document.getElementById('surpriseTitle').textContent=item[0];
+ document.getElementById('surpriseText').textContent=item[1];
+});
+document.getElementById('customFacts').value=readFacts().join('\n');
+document.getElementById('saveFacts').addEventListener('click',()=>{
+ const facts=document.getElementById('customFacts').value.split('\n').map(s=>s.trim()).filter(Boolean);
+ try{
+  localStorage.setItem('vhCustomFacts',facts.join('\n'));
+  document.getElementById('factStatus').textContent='Your facts are saved on this device. ♡';
+ }catch(e){document.getElementById('factStatus').textContent='This browser could not save the facts.'}
+});
+</script>
+  <script src="js/velvet-random-music.js" defer></script>
+<script src="js/velvet-welcome-music.js" defer></script>
+  <script src="js/velvet-effects.js" defer></script>
+  <script src="js/velvet-mobile.js" defer></script>
+</body>
+</html>
